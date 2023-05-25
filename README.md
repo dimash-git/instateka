@@ -1,3 +1,3 @@
-Mortgage calculating landing page ![alt text](https://instateka.ru/favicon.ico "Instateka")
+Mortgage calculating landing page
 
-Click here: [Instateka](https://instateka.ru/)
+Click here: ![alt text](https://instateka.ru/favicon.ico "Instateka") [Instateka](https://instateka.ru/)
