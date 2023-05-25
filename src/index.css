@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI"), url("./assets/fonts/segoueui.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
