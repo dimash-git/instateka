@@ -2,11 +2,11 @@ import zigzag from "../../../assets/zigzag.svg";
 import mockup from "../../../assets/iphone.png";
 import waves from "../../../assets/waves.png";
 import { Heading } from "../../Headings/Headings";
-import Button from "../../Buttons/Button";
 
 import { motion } from "framer-motion";
 import { Container } from "../../Containers/Containers";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const isMobile = useMediaQuery("(max-width: 842px)");
@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <div className="relative">
       <Container>
-        <div className="mt-[170px] flex">
+        <div className="mt-16 md:mt-[170px] flex">
           <div>
             <img src={zigzag} alt="" />
             <div className="max-w-[532px]">
@@ -25,10 +25,27 @@ const Hero = () => {
                 конверсию и ускоряем одобрение до нескольких минут
               </p>
             </div>
-            <div className="max-w-[344px]">
-              <Button to="/register" className="">
+            <div className="max-w-[480px] flex gap-2 md:gap-5">
+              <Link
+                to="/register"
+                className="
+                  block w-full rounded-md
+                text-white text-md font-bold text-center
+                bg-appOrange hover:bg-[#fd9e84] app-transition 
+                  py-[15px] px-[6px] mt-20"
+              >
                 Подключиться
-              </Button>
+              </Link>
+              <Link
+                to="/application"
+                className="
+                  block w-full rounded-md
+                text-white text-md font-bold text-center
+                bg-appDark hover:bg-[#7981a0] app-transition 
+                  py-[15px] px-[6px] mt-20"
+              >
+                Экспресс заявка
+              </Link>
             </div>
           </div>
           <div className="flex flex-1 justify-center relative max-[842px]:hidden">
