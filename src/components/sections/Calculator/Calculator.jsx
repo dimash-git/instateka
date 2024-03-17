@@ -8,6 +8,7 @@ import BankCard from "../../Cards/BankCard";
 import { formatParseMapping } from "../../../utils/format";
 import { getPrograms, getReference } from "../../../api/get";
 import CreditTermInputs from "../../Form/CreditTermInputs";
+import useDebounce from "../../../hooks/useDebounce";
 
 const Calculator = () => {
   const [initFormData, setInitFormData] = useState(null);
@@ -26,7 +27,9 @@ const Calculator = () => {
   } = useForm();
 
   const watchedFields = watch();
-  const prevWatchedFields = useRef(watchedFields);
+  const debouncedWatchedFields = useDebounce(watchedFields, 500); // Use the debounce hook with a 500ms delay
+
+  const prevWatchedFields = useRef(debouncedWatchedFields);
 
   const onSubmit = (formData = {}) => {
     getPrograms(formData)
@@ -40,7 +43,7 @@ const Calculator = () => {
 
   const fetchCalculatorData = async () => {
     const formValues = getValues();
-    await onSubmit(formValues);
+    onSubmit(formValues);
   };
 
   useEffect(() => {
@@ -68,13 +71,13 @@ const Calculator = () => {
   useEffect(() => {
     if (
       JSON.stringify(prevWatchedFields.current) !==
-      JSON.stringify(watchedFields)
+      JSON.stringify(debouncedWatchedFields)
     ) {
       fetchCalculatorData();
-      prevWatchedFields.current = watchedFields;
+      prevWatchedFields.current = debouncedWatchedFields;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchedFields]);
+  }, [debouncedWatchedFields]);
 
   useEffect(() => {
     if (initFormData) {
